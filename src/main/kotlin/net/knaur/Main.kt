@@ -1,6 +1,11 @@
 package net.knaur
 
-import io.javalin.Javalin
+import org.http4k.core.*
+import org.http4k.core.Method.GET
+import org.http4k.routing.bind
+import org.http4k.routing.routes
+import org.http4k.server.Jetty
+import org.http4k.server.asServer
 
 fun getGreeting(): String {
     val osName = System.getProperty("os.name")
@@ -12,18 +17,13 @@ fun main() {
     println(getGreeting())
     print("Webapp is running on port 7070")
 
-    // Simple route registry: map path -> handler. Add new entries here to expose more routes.
-    val routes: Map<String, (io.javalin.http.Context) -> Unit> = mapOf(
-        "/" to { ctx -> ctx.json("Hello World") },
-        "/greeting" to { ctx -> ctx.json(getGreeting()) }
+    // Simple route registry: add new entries here to expose more routes.
+    val app: HttpHandler = routes(
+        "/" bind GET to { _: Request -> Response(Status.OK).body("Hello World") },
+        "/greeting" bind GET to { _: Request -> Response(Status.OK).body(getGreeting()) }
     )
 
-    // Create and start the app with routes registered
-    val app = Javalin.create { config ->
-        config.routes.apply {
-            routes.forEach { (path, handler) ->
-                get(path, handler)
-            }
-        }
-    }.start(7070)
+    // Start the server on port 7070 using Jetty adapter
+    val server = app.asServer(Jetty(7070)).start()
+    println("Server started: ${server.port()}")
 }

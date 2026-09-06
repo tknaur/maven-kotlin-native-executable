@@ -10,10 +10,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>2.1.20</kotlin.version>
+        <kotlin.version>2.4.10</kotlin.version>
         <graalvm.buildtools.version>0.11.0</graalvm.buildtools.version>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
-        <javalin.version>7.2.3</javalin.version>
+        <http4k.version>6.58.0.0</http4k.version>
         <slf4j.version>2.0.18</slf4j.version>
         <main.class>net.knaur.MainKt</main.class>
     </properties>
@@ -25,9 +25,14 @@
             <version>${kotlin.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.javalin</groupId>
-            <artifactId>javalin</artifactId>
-            <version>${javalin.version}</version>
+            <groupId>org.http4k</groupId>
+            <artifactId>http4k-core</artifactId>
+            <version>${http4k.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.http4k</groupId>
+            <artifactId>http4k-server-jetty</artifactId>
+            <version>${http4k.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
