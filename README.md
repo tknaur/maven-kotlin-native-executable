@@ -91,3 +91,13 @@ JAVA_HOME=/home/atom/_java_/graalvm25 PATH=/home/atom/_java_/graalvm25/bin:$PATH
 # Run the generated native executable
 ./target/mvn-native
 ```
+
+---
+
+## Compiler Recommendations & Optimizations
+For details on implementing compiler recommendations (`G1GC`, `PGO`, `FUTR`, `HEAP`, `CPU`), refer to [OPTIMIZATIONS.md](file:///home/atom/lab/kotlin/mvn_native/OPTIMIZATIONS.md).
+```bash
+# Build with optimized profile
+JAVA_HOME=/home/atom/_java_/graalvm25 PATH=/home/atom/_java_/graalvm25/bin:$PATH mvn clean package -Poptimized
+```
+
