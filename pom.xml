@@ -15,6 +15,7 @@
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <http4k.version>6.58.0.0</http4k.version>
         <slf4j.version>2.0.18</slf4j.version>
+        <kotlin.compiler.jvmTarget>25</kotlin.compiler.jvmTarget>
         <main.class>net.knaur.MainKt</main.class>
     </properties>
 
@@ -35,11 +36,15 @@
             <version>${http4k.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.http4k</groupId>
+            <artifactId>http4k-format-jackson</artifactId>
+            <version>${http4k.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit5</artifactId>
