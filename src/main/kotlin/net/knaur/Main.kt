@@ -11,8 +11,19 @@ fun getGreeting(): String {
 fun main() {
     println(getGreeting())
     print("Webapp is running on port 7070")
-    val app = Javalin.create() { config ->
-        config.routes.get("/") { ctx -> ctx.json("Hello World") }
+
+    // Simple route registry: map path -> handler. Add new entries here to expose more routes.
+    val routes: Map<String, (io.javalin.http.Context) -> Unit> = mapOf(
+        "/" to { ctx -> ctx.json("Hello World") },
+        "/greeting" to { ctx -> ctx.json(getGreeting()) }
+    )
+
+    // Create and start the app with routes registered
+    val app = Javalin.create { config ->
+        config.routes.apply {
+            routes.forEach { (path, handler) ->
+                get(path, handler)
+            }
+        }
     }.start(7070)
 }
-
