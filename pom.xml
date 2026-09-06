@@ -13,6 +13,8 @@
         <kotlin.version>2.1.20</kotlin.version>
         <graalvm.buildtools.version>0.11.0</graalvm.buildtools.version>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
+        <javalin.version>7.2.3</javalin.version>
+        <slf4j.version>2.0.18</slf4j.version>
         <main.class>net.knaur.MainKt</main.class>
     </properties>
 
@@ -22,6 +24,17 @@
             <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.javalin</groupId>
+            <artifactId>javalin</artifactId>
+            <version>${javalin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit5</artifactId>
