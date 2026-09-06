@@ -109,4 +109,5 @@ During native image compilation, GraalVM provides compiler recommendations:
 * **HEAP (`-R:MaxHeapSize=<size>`)**: Hard memory limits for container/CLI environments.
 * **CPU (`-march=native`)**: Vectorized machine code tailored to host CPU features.
 
-For detailed explanations, trade-offs, and step-by-step PGO instructions, see **[OPTIMIZATIONS.md](OPTIMIZATIONS.md)**.
+For detailed explanations, trade-offs, and tuning options, see **[OPTIMIZATIONS.md](OPTIMIZATIONS.md)**.
+For a complete step-by-step walkthrough of Profile-Guided Optimization, see **[PGO.md](PGO.md)**.

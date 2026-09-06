@@ -46,22 +46,26 @@ PGO allows GraalVM's AOT compiler to optimize machine code using runtime profili
 #### Step-by-Step Workflow:
 1. **Build the instrumented binary**:
    ```bash
-   mvn package -Dnative.buildArgs="--pgo-instrument"
+   JAVA_HOME=/home/atom/_java_/graalvm25 PATH=/home/atom/_java_/graalvm25/bin:$PATH mvn clean package -Poptimized,pgo-instrument
    ```
-   *(Or add `<buildArg>--pgo-instrument</buildArg>` to `pom.xml`)*
 
 2. **Run the instrumented binary under realistic workload**:
    ```bash
    ./target/mvn-native
+   # Send traffic:
+   curl http://localhost:7070/
+   curl http://localhost:7070/greeting
+   # Stop server (Ctrl+C or kill)
    ```
-   This generates a profiling file: `default.iprof`.
+   This generates a profile dump: `default.iprof`.
 
-3. **Rebuild the final binary using the gathered profile**:
+3. **Rebuild the final binary with the gathered profile**:
    ```bash
-   mvn package -Dnative.buildArgs="--pgo=default.iprof"
+   JAVA_HOME=/home/atom/_java_/graalvm25 PATH=/home/atom/_java_/graalvm25/bin:$PATH mvn clean package -Poptimized,pgo
    ```
 
 - **Benefits**: Up to 20–40% higher peak throughput, better inlining of hot methods, and reduced runtime memory.
+- **Dedicated Guide**: See **[PGO.md](PGO.md)** for a full lifecycle diagram, verification steps, and automated build script.
 
 ---
 
